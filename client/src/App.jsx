@@ -1,5 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+}from 'react-router-dom';
+
+import LandingPage from './LandingPage';
 import Login from './Login';
 import Signup from './Signup';
 
@@ -71,28 +78,34 @@ class App extends React.Component {
 
   render() {
     var user = this.state.user;
+    var token = this.state.token;
     var contents;
+
     if (user) {
       contents = (
-        <>
-          <p>Hello, {user.name}</p>
-          <p onClick={this.logout}>Log out</p>
-        </>
+        <LandingPage user={user} token={token} />
       );
     } else {
       contents = (
         <>
-          <p>Please sign up or log in</p>
-          <Login liftToken={this.liftToken} /><br />
-          <Signup liftToken={this.liftToken} />
+          <nav>
+            <Link className="brn-default" to="/login">Login</Link>{" "}
+            <Link className="brn-default"  to="/signup">Signup</Link>
+          </nav>
+          <Route path="/login" 
+            render={(props) => <Login liftToken={this.liftToken} {...props} />} 
+          />
+          <Route path="/signup" 
+            render={() => <Signup liftToken={this.liftToken}/>} 
+          />
         </>
       )
     }
 
     return(
-      <>
+      <Router>
         {contents}
-      </>
+      </Router>
     );
   }
 }
