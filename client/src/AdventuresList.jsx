@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function AdventuresList({adventures, handleAdventureSelect}) {
+  var contents;
   if (adventures) {
     contents = (
       <div>
@@ -8,7 +10,7 @@ function AdventuresList({adventures, handleAdventureSelect}) {
           <div key={i}>
             <h3>{adventure.name}</h3>
             <Link to='/adventure'>
-              <button onClick={handleAdventureSelect} value={adventure._id} > Go On This Adventure! </button>
+              <button onClick={() => handleAdventureSelect(adventure._id)} > Go On This Adventure! </button>
             </Link>
           </div>
         )}
