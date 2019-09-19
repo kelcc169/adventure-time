@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Navigation: React.FC = () => {
+import { INavigation } from './react-app-env';
+
+const Navigation: React.FC<INavigation> = ({logout}) => {
   return(
     <div>
-      <h1>Navigation</h1>
+      <Link to='/'>Landing Page?</Link>
+      <Link to='/signup'>Signup Page</Link>
+      <Link to='/' onClick={(e) => logout(e)}>Logout</Link>
     </div>
   )
 }
