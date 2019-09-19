@@ -46,28 +46,15 @@ const App: React.FC = () => {
     }
   }, [token])
 
-  let contents;
-
-  if (Object.keys(user).length > 0) {
-    contents = (
-      <>
-        <Navigation logout={logout} />
-        <Route path='/' render={() => <Profile /> } />
-      </>
-    )
-  } else {
-    contents = (
-      <div className="App">
-        <Route exact path='/' render={(props) => <Login setToken={setToken} {...props} /> } />
-        <Route path='/signup' render={(props) => <Signup setToken={setToken} {...props} /> } />
-      </div>
-
-    )
-  }
-
   return (
     <Router>
-      {contents}
+      { token.length > 0 ? <>
+        <Navigation logout={logout}/>
+        <Route path='/' render={() => <Profile /> } />
+      </> : <>
+        <Route exact path='/' render={(props) => <Login setToken={setToken} {...props} /> } />
+        <Route path='/signup' render={(props) => <Signup setToken={setToken} {...props} /> } />
+      </> }
     </Router>
   );
 }
