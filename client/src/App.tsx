@@ -50,7 +50,7 @@ const App: React.FC = () => {
     <Router>
       { token.length > 0 ? <>
         <Navigation logout={logout}/>
-        <Route path='/' render={() => <Profile /> } />
+        <Route path='/' render={() => <Profile userId={user._id} /> } />
       </> : <>
         <Route exact path='/' render={(props) => <Login setToken={setToken} {...props} /> } />
         <Route path='/signup' render={(props) => <Signup setToken={setToken} {...props} /> } />

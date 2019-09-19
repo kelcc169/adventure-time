@@ -37,7 +37,15 @@ export interface INavigation {
   logout: Function;
 }
 
+export interface IProfile {
+  userId: string;
+}
+
 export interface IAdventureList {
   adventures: IAdventure[];
   setSelectedAdventure: Function;
+}
+
+export interface IAdventureTime {
+  selectedAdventure: string;
 }

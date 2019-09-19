@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-// import { Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import axios from 'axios';
 
 import AdventureList from './AdventureList';
+import CreateAdventure from './CreateAdventure';
+import AdventureTime from './AdventureTime';
 
-import { IAdventure } from './react-app-env';
+import { IAdventure, IProfile } from './react-app-env';
 
-const Profile: React.FC = () => {
+const Profile: React.FC<IProfile> = ({userId}) => {
   const [ adventures, setAdventures ] = useState<IAdventure[]>([]);
   // const [ userLists, setUserLists ] = useState<IAdventure[]>([]);
   const [ selectedAdventure, setSelectedAdventure ] = useState<string>('');
@@ -20,7 +22,14 @@ const Profile: React.FC = () => {
 
   return(
     <>
-      <AdventureList adventures={adventures} setSelectedAdventure={setSelectedAdventure} />
+      {userId}
+      <Route exact path='/' render={() => 
+        <AdventureList adventures={adventures} 
+          setSelectedAdventure={setSelectedAdventure} /> } />
+      <Route path='/create' render={() => 
+        <CreateAdventure /> } />
+      <Route path='/adventure' render={() =>
+        <AdventureTime selectedAdventure={selectedAdventure} /> } />
     </>
   )
 }
