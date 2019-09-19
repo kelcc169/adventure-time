@@ -40,5 +40,6 @@
     "@types/axios": "^0.14.0",
     "@types/mongoose": "^5.5.17",
     "@types/react-router-dom": "^4.3.5"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 import './App.css';
 
 import Navigation from './Navigation';
 import Signup from './Signup';
 import Login from './Login';
+import Profile from './Profile';
 
 import { IUser } from './react-app-env';
 
@@ -46,13 +46,28 @@ const App: React.FC = () => {
     }
   }, [token])
 
+  let contents;
+
+  if (Object.keys(user).length > 0) {
+    contents = (
+      <>
+        <Navigation logout={logout} />
+        <Route path='/' render={() => <Profile /> } />
+      </>
+    )
+  } else {
+    contents = (
+      <div className="App">
+        <Route exact path='/' render={(props) => <Login setToken={setToken} {...props} /> } />
+        <Route path='/signup' render={(props) => <Signup setToken={setToken} {...props} /> } />
+      </div>
+
+    )
+  }
+
   return (
     <Router>
-      <div className="App">
-      <Navigation logout={logout} />
-      <Route exact path='/' render={(props) => <Login setToken={setToken} {...props} /> } />
-      <Route path='/signup' render={(props) => <Signup setToken={setToken} {...props} /> } />
-      </div>
+      {contents}
     </Router>
   );
 }

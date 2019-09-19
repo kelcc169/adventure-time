@@ -31,7 +31,7 @@ const Login: React.FC<ISetToken> = ({setToken, history}) => {
     }).catch(err => {
       console.log(err)
     }).finally(() => {
-      history.push('/library')
+      history.push('/')
     })
   }
 
