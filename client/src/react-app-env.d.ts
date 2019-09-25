@@ -49,3 +49,14 @@ export interface IAdventureList {
 export interface IAdventureTime {
   selectedAdventure: string;
 }
+
+export interface IViewport {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+}
+
+export interface IUserLocation {
+  latitude: number;
+  longitude: number;
+}
